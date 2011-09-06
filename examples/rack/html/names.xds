@@ -1,0 +1,200 @@
+{
+    "name": "names.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "http://localhost:9292/api",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": "./NamesApp",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "LF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "NamesApp"
+    },
+    "xdsVersion": "1.2.0",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen2626",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 541,
+                "id": "namesWindow",
+                "width": 797,
+                "layout": "fit",
+                "title": "All Names",
+                "designer|userClassName": "namesWindow"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2817",
+                    "type": "gridpanel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "namesGrid",
+                        "title": "Names Grid",
+                        "store": "NamesStore",
+                        "designer|userClassName": "MyGridPanel"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2854",
+                            "type": "gridview",
+                            "reference": {
+                                "name": "viewConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "MyGridView"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen3478",
+                            "type": "gridcolumn",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "width": 186,
+                                "dataIndex": "name",
+                                "text": "Name",
+                                "designer|userClassName": "MyColumn1"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen3487",
+                            "type": "gridcolumn",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "width": 453,
+                                "dataIndex": "address",
+                                "text": "Address",
+                                "designer|userClassName": "MyColumn2"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen3496",
+                            "type": "gridcolumn",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "country",
+                                "text": "Country",
+                                "designer|userClassName": "MyColumn3"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [
+        {
+            "id": "ExtBox1-ext-gen1666",
+            "type": "directstore",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoLoad": true,
+                "storeId": "NamesStore",
+                "designer|userClassName": "NamesStore"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen1670",
+                    "type": "directproxy",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "api": "{read:Names.get,\nupdate:Names.set}",
+                        "directFn": null,
+                        "designer|userClassName": "Direct Proxy"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen1676",
+                            "type": "jsonreader",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "Json Reader"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen2110",
+                    "type": "datafield",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "name",
+                        "type": "string",
+                        "designer|userClassName": "MyField"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen2117",
+                    "type": "datafield",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "address",
+                        "type": "string",
+                        "designer|userClassName": "MyField1"
+                    }
+                },
+                {
+                    "id": "ExtBox1-ext-gen2124",
+                    "type": "datafield",
+                    "reference": {
+                        "name": "fields",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "name": "country",
+                        "type": "string",
+                        "designer|userClassName": "MyField2"
+                    }
+                }
+            ]
+        }
+    ],
+    "framework": "ext40"
+}

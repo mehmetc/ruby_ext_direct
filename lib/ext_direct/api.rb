@@ -20,40 +20,25 @@ module ExtDirect
         methods << {:name => name, :len => len}
       end
             
-      @exposed_api = {class_to_expose.name => methods}
+      @exposed_api.store(class_to_expose.name, methods)
     end
     
+    def self.expose_all(class_dir)
+     
+      Dir.glob("#{class_dir}/**/*.rb").each do |r|
+        rr = r.split("#{class_dir}/")[1].gsub('.rb','')     
+        require "#{class_dir}/#{rr}"
+        klass = self.class.const_get(rr.classify)
+        self.expose klass
+      end      
+    end
+        
     def self.to_json      
       api = {:url => '/router', 
              :type => 'remoting',
              :actions => @exposed_api}
              
       "REMOTING_API = #{api.to_json};"
-    end    
+    end
   end
-end            
-
-=begin
-REMOTING_API = {"url":"/direct_router",
-                "type":"remoting",
-                "actions":{"User":[{"name":"create","len":1},
-                                   {"name":"update","len":2},
-                                   {"name":"update_all","len":2},
-                                   {"name":"delete","len":1},
-                                   {"name":"delete_all","len":1},
-                                   {"name":"exists","len":1},
-                                   {"name":"find","len":1},
-                                   {"name":"find_every","len":1},
-                                   {"name":"first","len":0},
-                                   {"name":"last","len":0},
-                                   {"name":"all","len":1},
-                                   {"name":"count","len":0}]},
-                "namespace":"App.models",
-                "srv_env":"development"};
-                
-                
-REMOTING_API = {"url":"/router",
-                "type":"remoting",
-                "actions":{"CountQueries":[{"get":1}]}};                
-
-=end  
+end
