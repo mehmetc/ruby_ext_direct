@@ -3,3 +3,5 @@
 Gemfile.lock
 pkg/*
 .DS_Store
+examples/rack/html/tmp
+examples/rack/data.yml

@@ -2,7 +2,7 @@
     "name": "names.xds",
     "settings": {
         "urlPrefix": "http://localhost/",
-        "directAPI": "http://localhost:9292/api",
+        "directAPI": "http://localhost:3000/api",
         "spacesToIndent": "4",
         "codeGenFormat": "Class",
         "exportPath": "./NamesApp",
@@ -60,7 +60,7 @@
                             }
                         },
                         {
-                            "id": "ExtBox1-ext-gen3732",
+                            "id": "ExtBox1-ext-gen3478",
                             "type": "gridcolumn",
                             "reference": {
                                 "name": "columns",
@@ -68,31 +68,29 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "width": 272,
+                                "width": 186,
                                 "dataIndex": "name",
-                                "editor": "{xtype: 'textfield',\nallowBlank:false}",
                                 "text": "Name",
-                                "designer|userClassName": "MyColumn"
-                            }
-                        },
-                        {
-                            "id": "ExtBox1-ext-gen3741",
-                            "type": "gridcolumn",
-                            "reference": {
-                                "name": "columns",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "width": 393,
-                                "dataIndex": "address",
-                                "editor": "{xtype: 'textfield',\nallowBlank:false}",
-                                "text": "Address",
                                 "designer|userClassName": "MyColumn1"
                             }
                         },
                         {
-                            "id": "ExtBox1-ext-gen3750",
+                            "id": "ExtBox1-ext-gen3487",
+                            "type": "gridcolumn",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "width": 453,
+                                "dataIndex": "address",
+                                "text": "Address",
+                                "designer|userClassName": "MyColumn2"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen3496",
                             "type": "gridcolumn",
                             "reference": {
                                 "name": "columns",
@@ -101,67 +99,11 @@
                             "codeClass": null,
                             "userConfig": {
                                 "dataIndex": "country",
-                                "editor": "{xtype: 'textfield',\nallowBlank:false}",
                                 "text": "Country",
-                                "designer|userClassName": "MyColumn2"
-                            }
-                        },
-                        {
-                            "id": "ExtBox1-ext-gen5035",
-                            "type": "gridroweditingplugin",
-                            "reference": {
-                                "name": "plugins",
-                                "type": "array"
-                            },
-                            "codeClass": "Ext.grid.plugin.RowEditing",
-                            "userConfig": {
-                                "clicksToEdit": 1,
-                                "designer|userClassName": "MyRowEditingPlugin"
+                                "designer|userClassName": "MyColumn3"
                             }
                         }
                     ]
-                },
-                {
-                    "id": "ExtBox1-ext-gen6904",
-                    "type": "tool",
-                    "reference": {
-                        "name": "tools",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "tooltip": "Add row",
-                        "type": "plus",
-                        "designer|userClassName": "MyTool2"
-                    }
-                },
-                {
-                    "id": "ExtBox1-ext-gen6486",
-                    "type": "tool",
-                    "reference": {
-                        "name": "tools",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "tooltip": "Save",
-                        "type": "save",
-                        "designer|userClassName": "MyTool"
-                    }
-                },
-                {
-                    "id": "ExtBox1-ext-gen6611",
-                    "type": "tool",
-                    "reference": {
-                        "name": "tools",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "tooltip": "Refresh",
-                        "type": "refresh",
-                        "designer|userClassName": "MyTool1"
-                    }
                 }
             ]
         }
@@ -190,7 +132,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "api": "{read:Names.load,\nupdate:Names.update,\ncreate:Names.create}",
+                        "api": "{read:Names.get,\nupdate:Names.set}",
                         "directFn": null,
                         "designer|userClassName": "Direct Proxy"
                     },
@@ -204,27 +146,10 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "idProperty": "id",
-                                "messageProperty": "message",
-                                "root": "data",
                                 "designer|userClassName": "Json Reader"
                             }
                         }
                     ]
-                },
-                {
-                    "id": "ExtBox1-ext-gen5836",
-                    "type": "datafield",
-                    "reference": {
-                        "name": "fields",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "name": "id",
-                        "type": "int",
-                        "designer|userClassName": "MyField3"
-                    }
                 },
                 {
                     "id": "ExtBox1-ext-gen2110",

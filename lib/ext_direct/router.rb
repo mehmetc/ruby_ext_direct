@@ -1,9 +1,24 @@
 module ExtDirect
   class Router
     def self.route(request)
-        data = ''
-        
+        result = nil
         params = self.parse_request(request)
+        
+        if params.is_a? Array
+          result = []
+          params.each do |p|
+            result << self.call_method(p)
+          end
+        else
+          result = self.call_method(params)
+        end
+        
+        result
+    end
+
+    private
+    def self.call_method(params)      
+        data = ''
         #get Class
         klass = self.class.const_get(params[:klass_name])
         #call method on class                
@@ -23,12 +38,32 @@ module ExtDirect
         :method => params[:method_to_call_name],
         :result => data
       }      
+    rescue Exception => e
+      response = {
+        :type    => 'exception',
+        :message => e.message,
+        :where   => e.backtrace.join("\n")
+      }
     end
     
-    private
     def self.parse_request(request)
+      params = nil
+      xparams_raw = JSON::parse(request)
+
+      if xparams_raw.is_a? Array
+        params = []
+        xparams_raw.each do |p|
+          params << self.xparams_to_params(p)
+        end
+      else
+        params = self.xparams_to_params(xparams_raw)
+      end
+
+      params
+    end
+    
+    def self.xparams_to_params(xparams)
       params = {}
-      xparams = JSON::parse(request)
       
       xparams_action = 'action'
       xparams_method = 'method'
@@ -55,7 +90,8 @@ module ExtDirect
         params.store(:args, xparams['data'])
       end      
       
-      params
+      params      
     end
+    
   end
 end

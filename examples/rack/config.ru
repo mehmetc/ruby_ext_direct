@@ -27,6 +27,7 @@ app = Rack::Builder.new do
       req = Rack::Request.new(env)
       if req.post?
         data = env["rack.input"].gets
+        pp data
         result = ExtDirect::Router.route(data)
       end
       

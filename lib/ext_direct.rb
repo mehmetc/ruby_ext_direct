@@ -3,7 +3,7 @@ require "ext_direct/api"
 require "ext_direct/router"
 
 class String
-  def classify
+  def classify_it
     self.split('_').map{|c| c.capitalize}.join('')
   end
 end

@@ -1,0 +1,3 @@
+<script type="text/javascript" src="app/view/ui/namesWindow.js"></script>
+<script type="text/javascript" src="app/view/namesWindow.js"></script>
+<script type="text/javascript" src="app/store/NamesStore.js"></script>
