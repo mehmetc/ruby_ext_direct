@@ -103,6 +103,9 @@ class TestExtDirect < Test::Unit::TestCase
       end
 
       should "call method with form parameters" do
+        expected = "method_with_arguments called: {\"a\"=>1, \"b\"=>2}"
+        result = ExtDirect::Router.route(@request_with_form_arguments)[:result]
+        assert_equal(expected, result)
       end
       
       should "call multiple actions" do

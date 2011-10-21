@@ -36,8 +36,9 @@ Ext.define('NamesApp.view.namesWindow', {
 		});
 		
 		me.down('#namesGrid').on('edit', function(editor, e){
-			result = editor.record.save();
+//			result = editor.record.save();
 			editor.record.commit();
+			me.down('#namesGrid').getStore().save();
 			me.down('#namesGrid').getView().refresh();			
 		});
     },

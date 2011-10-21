@@ -4,7 +4,7 @@ module ExtDirect
         result = nil
         params = self.parse_request(request)
         
-        if params.is_a? Array
+        if params.is_a?(Array)
           result = []
           params.each do |p|
             result << self.call_method(p)

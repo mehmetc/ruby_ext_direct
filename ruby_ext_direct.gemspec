@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "ext_direct/version"
 
 Gem::Specification.new do |s|
-  s.name        = "ext_direct"
+  s.name        = "ruby_ext_direct"
   s.version     = ExtDirect::VERSION
   s.authors     = ["Mehmet Celik"]
   s.email       = ["mehmet@celik.be"]
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Ext.direct}
   s.description = %q{Ext.direct}
 
-  s.rubyforge_project = "ext_direct"
+  s.rubyforge_project = "ruby_ext_direct"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
