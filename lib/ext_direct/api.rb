@@ -1,10 +1,17 @@
 require 'json'
 
 module ExtDirect
+# Simply expose a class 
+# @author Mehmet Celik
   class Api
-    #@exposed_api = {}
     attr_reader :exposed_api
-    
+
+# Expose a class
+#
+# @author Mehmet Celik
+# @param [Class] class that needs to be exposed
+# @params [Hash] instructions to how to expose the class. For now just the ':only' key is accepted.
+# @return [Hash] returns a list of exposed classes
     def self.expose(class_to_expose, options = {})
       @exposed_api = {} if @exposed_api.nil?
       
@@ -26,6 +33,10 @@ module ExtDirect
       @exposed_api.store(class_to_expose.name, methods)
     end
     
+# Expose all classes in a directory(conviniance method)
+#
+# @author Mehmet Celik
+# @param [String] Directory where all classes are stored
     def self.expose_all(class_dir)
       @exposed_api = {}
      
@@ -38,12 +49,20 @@ module ExtDirect
         self.expose klass
       end      
     end
-        
+
+# Return all exposed classes as a JSON String
+#
+# @author Mehmet Celik
+# @return [String] exposed classes as JSON String
     def self.to_json      
       api = self.to_raw
       "REMOTING_API = #{api.to_json};"
     end
-    
+
+# Return a Hash of all exposed classes
+#
+# @author Mehmet Celik
+# @return [Hash] exposed classes
     def self.to_raw
       api = {:url => '/router', 
              :type => 'remoting',

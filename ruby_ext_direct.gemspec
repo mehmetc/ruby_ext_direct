@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = ExtDirect::VERSION
   s.authors     = ["Mehmet Celik"]
   s.email       = ["mehmet@celik.be"]
-  s.homepage    = ""
-  s.summary     = %q{Ext.direct}
-  s.description = %q{Ext.direct}
+  s.homepage    = "https://github.com/mehmetc/ruby_ext_direct"
+  s.summary     = %q{An attempt to implement Ext.Direct from Sencha}
+  s.description = %q{An attempt to implement Ext.Direct from Sencha}
 
   s.rubyforge_project = "ruby_ext_direct"
 

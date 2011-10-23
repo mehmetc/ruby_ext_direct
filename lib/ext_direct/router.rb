@@ -1,5 +1,12 @@
 module ExtDirect
+# Route all incomming calls to the exposed method
+# @author Mehmet Celik
   class Router
+# Route a request to it's class and return the result
+#
+# @author Mehmet Celik
+# @param [Object] request input params
+# @return [Hash] returns whatever the called class returns.
     def self.route(request)
         result = nil
         params = self.parse_request(request)
@@ -17,6 +24,11 @@ module ExtDirect
     end
 
     private
+# Call the exposed method
+#
+# @author Mehmet Celik
+# @param [Object] call exposed method
+# @param [Hash] return formatted output of class
     def self.call_method(params)      
         data = ''
         #get Class
@@ -46,22 +58,33 @@ module ExtDirect
       }
     end
     
+# Parse parameters
+#
+# @author Mehmet Celik
+# @params [Object] parameters
+# @return [Hash] parsed parameters
     def self.parse_request(request)
-      params = nil
-      xparams_raw = JSON::parse(request)
+      params = {}
+      unless request.nil?
+        xparams_raw = JSON::parse(request)
 
-      if xparams_raw.is_a? Array
-        params = []
-        xparams_raw.each do |p|
-          params << self.xparams_to_params(p)
+        if xparams_raw.is_a? Array
+          params = []
+          xparams_raw.each do |p|
+            params << self.xparams_to_params(p)
+          end
+        else
+          params = self.xparams_to_params(xparams_raw)
         end
-      else
-        params = self.xparams_to_params(xparams_raw)
       end
-
       params
     end
-    
+
+# Convert the ext_direct parameters into internal ones
+#
+# @author Mehmet Celik
+# @params [Object] unparsed parameters
+# @return [Hash] parsed parameters
     def self.xparams_to_params(xparams)
       params = {}
       
