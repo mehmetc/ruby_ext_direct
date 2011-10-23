@@ -10,7 +10,7 @@ module ExtDirect
 #
 # @author Mehmet Celik
 # @param [Class] class that needs to be exposed
-# @params [Hash] instructions to how to expose the class. For now just the ':only' key is accepted.
+# @param [Hash] instructions to how to expose the class. For now just the ':only' key is accepted.
 # @return [Hash] returns a list of exposed classes
     def self.expose(class_to_expose, options = {})
       @exposed_api = {} if @exposed_api.nil?

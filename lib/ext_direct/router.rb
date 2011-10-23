@@ -61,7 +61,7 @@ module ExtDirect
 # Parse parameters
 #
 # @author Mehmet Celik
-# @params [Object] parameters
+# @param [Object] parameters
 # @return [Hash] parsed parameters
     def self.parse_request(request)
       params = {}
@@ -83,7 +83,7 @@ module ExtDirect
 # Convert the ext_direct parameters into internal ones
 #
 # @author Mehmet Celik
-# @params [Object] unparsed parameters
+# @param [Object] unparsed parameters
 # @return [Hash] parsed parameters
     def self.xparams_to_params(xparams)
       params = {}
