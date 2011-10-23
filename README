@@ -1,5 +1,12 @@
 This is an attempt to implement Ext.Direct (see http://www.sencha.com/products/extjs/extdirect for more info)
 
+I wanted to have a library that did not explicitly bind to any ORM(like ActiveRecord, Datamapper, ...).
+The idea is very simple just add an 'api' and 'router' path to your backend point to your exposed classes and you are set.
+
+Example: (See examples directory for more)
+Add this to your Gemfile
+  gem 'ruby_ext_direct', :require => 'ext_direct'
+
 
 TODO: add documentation
 TODO: add rails engine
