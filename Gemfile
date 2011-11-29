@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in ext_direct.gemspec
+# Specify your gem's dependencies in ruby_ext_direct.gemspec
 gemspec
