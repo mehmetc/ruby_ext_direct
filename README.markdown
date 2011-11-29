@@ -11,12 +11,10 @@ and you are set
 
 #INSTALL#
 	gem install ruby_ext_direct
-
 ---
 
 #Example:#
-(For more [examples](https://github.com/mehmetc/ruby_ext_direct_examples for more "EXAMPLES") )
-
+(For more [examples](https://github.com/mehmetc/ruby_ext_direct_examples "EXAMPLES") )
 ##A RACK based example##
 
 ###*Gemfile*
