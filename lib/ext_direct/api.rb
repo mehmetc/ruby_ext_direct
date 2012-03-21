@@ -7,7 +7,7 @@ module ExtDirect
     @exposed_api_raw = nil
     @router_url = '/router'
     
-# Expose a class
+# Expose methods from a class and his ancestor, if class was inherited
 #
 # @author Mehmet Celik
 # @param [Class] class that needs to be exposed
@@ -22,16 +22,31 @@ module ExtDirect
         raw_methods = options[:only] || []
       else
         raw_methods = class_to_expose.instance_methods(false) - (options[:except] || [])
-        raw_methods += class_to_expose.methods(false) - (options[:except] || [])        
+        raw_methods += class_to_expose.methods(false) - (options[:except] || [])   
+        raw_methods += class_to_expose.ancestors[1].methods(false) - (options[:except] || [])   
+        raw_methods += class_to_expose.ancestors[1].instance_methods(false) - (options[:except] || [])           
       end
       
       raw_methods.uniq!
       raw_methods.each do |m|
         name = m
-#        len = class_to_expose.method(m).parameters.size
         parameters = []
-        class_to_expose.method(m).parameters.each do |p|
-          parameters << {:name => p[1].to_s, :optional => p[0] == :opt}
+        method_to_run = nil
+        
+        if class_to_expose.methods(false).include?(m)
+          method_to_run = class_to_expose.method(m) 
+        elsif class_to_expose.instance_methods(false).include?(m)
+          method_to_run = class_to_expose.instance_method(m) 
+        elsif class_to_expose.ancestors[1].methods(false).include?(m)
+          method_to_run = class_to_expose.ancestors[1].method(m) 
+        elsif class_to_expose.ancestors[1].instance_methods(false).include?(m)
+          method_to_run = class_to_expose.ancestors[1].instance_method(m)
+        end
+        
+        unless method_to_run.nil?
+          method_to_run.parameters.each do |p|
+            parameters << {:name => p[1].to_s, :optional => p[0] == :opt}
+          end
         end
         methods << {:name => name, :parameters => parameters}
       end
@@ -83,10 +98,19 @@ module ExtDirect
       @router_url = url
     end
     
+# Get the router url
+    
+# @author Mehmet Celik   
+# @return [String] router url
     def self.router_url
       @router_url
     end
+
+# TODO
     
+# @author Mehmet Celik   
+# @param [String] router url defaults to '/router'
+# @return [Hash] exposed API data
     def self.exposed_api(show_parameters = false)
       result = @exposed_api_raw
       unless show_parameters

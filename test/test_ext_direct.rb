@@ -14,6 +14,8 @@ class MyClass
   end
 end
 
+class InheritedFromMyClass < MyClass
+end
 
 
 class TestExtDirect < Test::Unit::TestCase
@@ -124,6 +126,23 @@ class TestExtDirect < Test::Unit::TestCase
         result = ExtDirect::Router.route(@request_multiple_actions)#[:result]
         assert_equal(expected, result)        
       end
+    end
+    
+    context 'Calling methods in sub classes' do
+      setup do
+        @request_without_arguments   = "{\"action\":\"InheritedFromMyClass\",\"method\":\"method_without_arguments\",\"data\":null,\"type\":\"rpc\",\"tid\":1}"
+        ExtDirect::Api.expose InheritedFromMyClass
+      end
+
+      should "call method without parameters" do
+        expected = "method_without_arguments called"
+
+        result = ExtDirect::Router.route(@request_without_arguments)[:result]
+
+        assert_equal(expected, result)
+      end
+      
+      
     end
   end
 end

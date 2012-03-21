@@ -35,12 +35,32 @@ module ExtDirect
         klass = self.class.const_get(params[:klass_name])
         #call method on class                
         klass_instance = klass.new
-        method_to_call = klass_instance.method(params[:method_to_call_name].to_sym)
+        
+        method_to_call = nil
+                
+        method_to_call_name = params[:method_to_call_name].to_sym
+=begin 
+        if klass_instance.methods(false).include?(method_to_call_name)
+          method_to_call = klass_instance.method(method_to_call_name) 
+        elsif klass_instance.instance_methods(false).include?( params[:method_to_call_name].to_sym)
+          method_to_call = klass_instance.instance_method(method_to_call_name) 
+        elsif klass_instance.ancestors[1].methods(false).include?(method_to_call_name)
+          method_to_call = klass_instance.ancestors[1].method(method_to_call_name) 
+        elsif klass_instance.ancestors[1].instance_methods(false).include?(method_to_call_name)
+          method_to_call = klass_instance.ancestors[1].instance_method(method_to_call_name)
+        end
+=end
+        
+        
+#        method_to_call = klass_instance.method(params[:method_to_call_name].to_sym)
+        method_to_call = klass_instance.method(method_to_call_name)
 
-        if method_to_call.parameters.size > 0
-          data = method_to_call.call(params[:args])
-        else
-          data = method_to_call.call
+        unless method_to_call.nil?
+          if method_to_call.parameters.size > 0
+            data = method_to_call.call(params[:args]) || []
+          else
+            data = method_to_call.call || []
+          end
         end
 
       response = {
